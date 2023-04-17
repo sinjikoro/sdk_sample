@@ -1,0 +1,39 @@
+workflows:
+  my-workflow:
+    name: sdk build
+    labels:
+      - ${TENANT_NAME}
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    environment:
+      groups:
+        - group_name
+      vars:
+        PUBLIC_ENV_VAR: "value here"
+      flutter: stable
+      xcode: latest
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      cancel_previous_builds: false
+    scripts:
+      - name: Build android
+        script: flutter build aar
+      - name: Build ios
+        script: flutter build ios-framework
+    artifacts:
+      - build/**/outputs/repo
+      - build/ios/framework
+    publishing:
+      email:
+        recipients:
+          - shinnaga.dev@gmail.com
+      scripts:
+        - echo 'Post-publish script'
