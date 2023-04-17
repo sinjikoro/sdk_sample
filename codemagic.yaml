@@ -24,6 +24,8 @@ workflows:
           source: true
       cancel_previous_builds: false
     scripts:
+      - name: pub get
+        script: flutter pub get
       - name: Build android
         script: flutter build aar
       - name: Build ios
