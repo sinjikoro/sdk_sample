@@ -2,7 +2,7 @@ workflows:
   my-workflow:
     name: sdk build
     labels:
-      - ${TENANT_NAME}
+      - test
     instance_type: mac_mini_m1
     max_build_duration: 60
     environment:
