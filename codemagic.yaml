@@ -2,7 +2,7 @@ workflows:
   my-workflow:
     name: sdk build
     labels:
-      - test_label
+      - test
     instance_type: mac_mini_m1
     max_build_duration: 60
     environment:
@@ -19,10 +19,10 @@ workflows:
       events:
         - push
       branch_patterns:
-        - pattern: 'deploy/*'
+        - pattern: '*'
           include: true
           source: true
-      cancel_previous_builds: false
+      cancel_previous_builds: true
     scripts:
       - name: pub get
         script: flutter pub get
