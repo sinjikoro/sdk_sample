@@ -19,15 +19,17 @@ workflows:
       events:
         - push
       branch_patterns:
-        - pattern: 'deploy/*'
+        - pattern: '*'
           include: true
           source: true
       cancel_previous_builds: false
     scripts:
-      - name: Build android
-        script: flutter build aar
-      - name: Build ios
-        script: flutter build ios-framework
+      # - name: Build android
+      #   script: flutter build aar
+      # - name: Build ios
+      #   script: flutter build ios-framework
+      - name: test
+        script: echo "test"
     artifacts:
       - build/**/outputs/repo
       - build/ios/framework
