@@ -1,38 +1,12 @@
 workflows:
   my-workflow:
-    name: sdk build
-    instance_type: mac_mini_m1
-    max_build_duration: 60
-    environment:
-      flutter: stable
-      xcode: latest
     triggering:
       events:
         - push
-        - tag
-      branch_patterns:
-        - pattern: 'deploy/*'
-          include: true
-          source: true
-      tag_patterns:
+      branch_patterns: 
         - pattern: '*'
-          include: true
-      cancel_previous_builds: false
+          include: false
+      cancel_previous_builds: true
     scripts:
-      - name: Build android
-        script: flutter build aar
-      - name: Build ios
-        script: flutter build ios-framework
-      - name: firebase store
-        script: echo firebase store
-      - name: github releases update
-        script: echo github releases update
-    artifacts:
-      - build/host/outputs/repo
-      - build/ios/framework
-    publishing:
-      email:
-        recipients:
-          - shinnaga.dev@gmail.com
-      scripts:
-        - echo 'Post-publish script'
+      - name: say hello
+        script: echo "Hello Codemagician!"
