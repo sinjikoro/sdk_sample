@@ -1,20 +1,11 @@
 workflows:
   my-workflow:
     name: sdk build
-    labels:
-      - test
     instance_type: mac_mini_m1
     max_build_duration: 60
     environment:
-      groups:
-        - group_name
-      vars:
-        PUBLIC_ENV_VAR: "value here"
       flutter: stable
       xcode: latest
-    cache:
-      cache_paths:
-        - ~/.pub-cache
     triggering:
       events:
         - push
@@ -32,6 +23,10 @@ workflows:
         script: flutter build aar
       - name: Build ios
         script: flutter build ios-framework
+      - name: firebase store
+        script: echo firebase store
+      - name: github releases update
+        script: echo github releases update
     artifacts:
       - build/host/outputs/repo
       - build/ios/framework
