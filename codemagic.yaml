@@ -18,20 +18,23 @@ workflows:
     triggering:
       events:
         - push
+        - tag
       branch_patterns:
+        - pattern: 'deploy/*'
+          include: true
+          source: true
+      tag_patterns:
         - pattern: '*'
           include: true
           source: true
       cancel_previous_builds: false
     scripts:
-      # - name: Build android
-      #   script: flutter build aar
-      # - name: Build ios
-      #   script: flutter build ios-framework
-      - name: test
-        script: echo "test"
+      - name: Build android
+        script: flutter build aar
+      - name: Build ios
+        script: flutter build ios-framework
     artifacts:
-      - build/**/outputs/repo
+      - build/host/outputs/repo
       - build/ios/framework
     publishing:
       email:
