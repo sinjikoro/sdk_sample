@@ -26,7 +26,6 @@ workflows:
       tag_patterns:
         - pattern: '*'
           include: true
-          source: true
       cancel_previous_builds: false
     scripts:
       - name: Build android
