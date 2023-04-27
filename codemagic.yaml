@@ -28,9 +28,10 @@ workflows:
           include: true
       cancel_previous_builds: false
     scripts:
-      - name: test
-        script: echo 'test comp'
-    publishing:
+      - name: Build android
+        script: flutter build aar
+      - name: Build ios
+        script: flutter build ios-framework    publishing:
       email:
         recipients:
           - shinnaga.dev@gmail.com
