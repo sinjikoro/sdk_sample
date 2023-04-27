@@ -28,12 +28,13 @@ workflows:
           include: true
       cancel_previous_builds: false
     scripts:
-      - name: Build android
-        script: flutter build aar
-      - name: Build ios
-        script: flutter build ios-framework
+        - name: Build android
+          script: flutter build aar
+        - name: Build ios
+          script: flutter build ios-framework
+    publishing:
       email:
         recipients:
-          - shinnaga.dev@gmail.com
+            - shinnaga.dev@gmail.com
       scripts:
         - echo 'Post-publish script a'
