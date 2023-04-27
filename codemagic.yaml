@@ -32,6 +32,9 @@ workflows:
           script: flutter build aar
         - name: Build ios
           script: flutter build ios-framework
+    artifacts:
+      - build/host/outputs/repo/*
+      - build/ios/framework/*
     publishing:
       email:
         recipients:
