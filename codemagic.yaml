@@ -35,4 +35,4 @@ workflows:
         recipients:
           - shinnaga.dev@gmail.com
       scripts:
-        - echo 'Post-publish script'
+        - echo 'Post-publish script a'
