@@ -29,9 +29,9 @@ workflows:
       cancel_previous_builds: false
     scripts:
         - name: Build android
-          script: flutter build aar
+          script: flutter build aar --no-debug --no-profile
         - name: Build ios
-          script: flutter build ios-framework
+          script: flutter build ios-framework --no-debug --no-profile
     artifacts:
       - build/host/outputs/repo/*
       - build/ios/framework/*
