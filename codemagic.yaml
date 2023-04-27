@@ -1,16 +1,38 @@
 workflows:
   my-workflow:
+    name: driver build
+    labels:
+      - test
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    environment:
+      groups:
+        - group_name
+      vars:
+        PUBLIC_ENV_VAR: "value here"
+      flutter: stable
+      xcode: latest
+    cache:
+      cache_paths:
+        - ~/.pub-cache
     triggering:
       events:
         - push
         - tag
-      branch_patterns: 
+      branch_patterns:
         - pattern: '*'
           include: true
-      tag_patterns: 
+          source: true
+      tag_patterns:
         - pattern: '*'
           include: true
-      cancel_previous_builds: true
+      cancel_previous_builds: false
     scripts:
-      - name: say hello
-        script: echo "Hello Codemagic!"
+      - name: test
+        script: echo 'test comp'
+    publishing:
+      email:
+        recipients:
+          - shinnaga.dev@gmail.com
+      scripts:
+        - echo 'Post-publish script'
