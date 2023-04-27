@@ -13,4 +13,4 @@ workflows:
       cancel_previous_builds: true
     scripts:
       - name: say hello
-        script: echo "Hello Codemagician!"
+        script: echo "Hello Codemagic!"
