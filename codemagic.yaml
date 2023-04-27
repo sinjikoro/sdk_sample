@@ -31,7 +31,7 @@ workflows:
       - name: Build android
         script: flutter build aar
       - name: Build ios
-        script: flutter build ios-framework    publishing:
+        script: flutter build ios-framework
       email:
         recipients:
           - shinnaga.dev@gmail.com
