@@ -10,6 +10,7 @@ workflows:
         - my-group
       vars:
         PUBLIC_ENV_VAR: $CM_BUILD_DIR/artifacts
+        GITHUB_TOKEN
       flutter: stable
       xcode: latest
     cache:
@@ -34,6 +35,7 @@ workflows:
           script: flutter build ios-framework --no-debug --no-profile
         - name: Artifacts File Consolidation
           script: | 
+            mkdir $PUBLIC_ENV_VAR
             mv build/host/outputs/repo $PUBLIC_ENV_VAR
             mv build/ios/framework $PUBLIC_ENV_VAR
             zip -r SDK_flies.zip $PUBLIC_ENV_VAR
@@ -43,3 +45,15 @@ workflows:
       email:
         recipients:
             - shinnaga.dev@gmail.com
+      scripts:
+        - name: publish github releases
+          script: |
+            if [ -z ${CM_TAG} ]; then
+              echo "Not a tag build, will not publish GitHub release"
+              exit 0
+            fi
+
+            gh release create "${CM_TAG}" \
+              --title "sampleSDK ${CM_TAG}" \
+              --notes-file changelog.md \
+              SDK_flies.zip
