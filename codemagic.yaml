@@ -9,7 +9,7 @@ workflows:
       groups:
         - my-group
       vars:
-        PUBLIC_ENV_VAR: "value here"
+        PUBLIC_ENV_VAR: $CM_BUILD_DIR/artifacts
       flutter: stable
       xcode: latest
     cache:
@@ -32,14 +32,14 @@ workflows:
           script: flutter build aar --no-debug --no-profile
         - name: Build ios
           script: flutter build ios-framework --no-debug --no-profile
+        - name: Artifacts File Consolidation
+          script: 
+            - mv build/host/outputs/repo $PUBLIC_ENV_VAR
+            - mv build/ios/framework $PUBLIC_ENV_VAR
+            - zip $PUBLIC_ENV_VAR
     artifacts:
-      - build/host/outputs/repo/*
-      - build/ios/framework/*
+      - $PUBLIC_ENV_VAR
     publishing:
       email:
         recipients:
             - shinnaga.dev@gmail.com
-      scripts:
-        - cd $FCI_ARTIFACTS_DIR
-        - pwd
-        - ls -la
