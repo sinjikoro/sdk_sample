@@ -33,7 +33,7 @@ workflows:
         - name: Build ios
           script: flutter build ios-framework --no-debug --no-profile
         - name: Artifacts File Consolidation
-          script: 
+          script: | 
             - mv build/host/outputs/repo $PUBLIC_ENV_VAR
             - mv build/ios/framework $PUBLIC_ENV_VAR
             - zip $PUBLIC_ENV_VAR
