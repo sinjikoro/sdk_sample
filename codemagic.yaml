@@ -10,7 +10,6 @@ workflows:
         - my-group
       vars:
         PUBLIC_ENV_VAR: $CM_BUILD_DIR/artifacts
-        GITHUB_TOKEN
       flutter: stable
       xcode: latest
     cache:
