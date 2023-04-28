@@ -1,6 +1,6 @@
 workflows:
   my-workflow:
-    name: driver build
+    name: sdk build
     labels:
       - test
     instance_type: mac_mini_m1
@@ -40,4 +40,6 @@ workflows:
         recipients:
             - shinnaga.dev@gmail.com
       scripts:
-        - echo 'Post-publish script a'
+        - cd $FCI_ARTIFACTS_DIR
+        - pwd
+        - ls -la
