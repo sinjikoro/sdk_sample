@@ -54,5 +54,5 @@ workflows:
 
             gh release create "${CM_TAG}" \
               --title "sampleSDK ${CM_TAG}" \
-              --notes-file changelog.md \
+              --notes "でっかい変更だよ！" \
               SDK_flies.zip
