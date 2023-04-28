@@ -34,16 +34,11 @@ workflows:
           script: flutter build ios-framework --no-debug --no-profile
         - name: Artifacts File Consolidation
           script: | 
-            echo $PUBLIC_ENV_VAR
-            ls -la $PUBLIC_ENV_VAR
             mv build/host/outputs/repo $PUBLIC_ENV_VAR
-            ls -la $PUBLIC_ENV_VAR
             mv build/ios/framework $PUBLIC_ENV_VAR
-            ls -la $PUBLIC_ENV_VAR
-            zip $PUBLIC_ENV_VAR
-            ls -la $PUBLIC_ENV_VAR
+            zip SDK_flies.zip $PUBLIC_ENV_VAR
     artifacts:
-      - $PUBLIC_ENV_VAR
+      - SDK_flies.zip
     publishing:
       email:
         recipients:
