@@ -36,7 +36,7 @@ workflows:
           script: | 
             mv build/host/outputs/repo $PUBLIC_ENV_VAR
             mv build/ios/framework $PUBLIC_ENV_VAR
-            zip SDK_flies.zip $PUBLIC_ENV_VAR
+            zip -r SDK_flies.zip $PUBLIC_ENV_VAR
     artifacts:
       - SDK_flies.zip
     publishing:
