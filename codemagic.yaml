@@ -28,25 +28,25 @@ workflows:
           include: true
       cancel_previous_builds: false
     scripts:
-        - name: Build android
-          script: flutter build aar --no-debug --no-profile
-        - name: Build ios
-          script: flutter build ios-framework --no-debug --no-profile
-        - name: Artifacts File Consolidation
-          script: | 
-            mkdir $PUBLIC_ENV_VAR
-            mv build/host/outputs/repo $PUBLIC_ENV_VAR
-            mv build/ios/framework $PUBLIC_ENV_VAR
-            zip -r SDK_flies.zip $PUBLIC_ENV_VAR
+        # - name: Build android
+        #   script: flutter build aar --no-debug --no-profile
+        # - name: Build ios
+        #   script: flutter build ios-framework --no-debug --no-profile
+        # - name: Artifacts File Consolidation
+        #   script: | 
+        #     mkdir $PUBLIC_ENV_VAR
+        #     mv build/host/outputs/repo $PUBLIC_ENV_VAR
+        #     mv build/ios/framework $PUBLIC_ENV_VAR
+        #     zip -r SDK_flies.zip $PUBLIC_ENV_VAR
         - name: github
           script: |
-            mkdit driver
+            mkdir driver
             cd driver
             git clone --depth 1 --no-single-branch https://sinjikoro:${GITHUB_TOKEN}@github.com/sinjikoro/driver_sample.git
             git checkout main
             ls -la
-    artifacts:
-      - SDK_flies.zip
+    # artifacts:
+    #   - SDK_flies.zip
     publishing:
       email:
         recipients:
