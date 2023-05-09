@@ -40,8 +40,9 @@ workflows:
             zip -r SDK_flies.zip $PUBLIC_ENV_VAR
         - name: github
           script: |
-            git clone --depth 1 --no-single-branch git@github.com:sinjikoro/driver_sample.git
-            cd driver_sample
+            mkdit driver
+            cd driver
+            git clone --depth 1 --no-single-branch https://sinjikoro:${GITHUB_TOKEN}@github.com/sinjikoro/driver_sample.git
             git checkout main
             ls -la
     artifacts:
@@ -58,6 +59,7 @@ workflows:
               exit 0
             fi
 
+            gh auth login
             gh release create "${CM_TAG}" \
               --title "sampleSDK ${CM_TAG}" \
               --notes "でっかい変更だよ！" \
