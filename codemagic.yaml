@@ -38,11 +38,15 @@ workflows:
         #     mv build/host/outputs/repo $PUBLIC_ENV_VAR
         #     mv build/ios/framework $PUBLIC_ENV_VAR
         #     zip -r SDK_flies.zip $PUBLIC_ENV_VAR
-        - name: env
+        - name: Configure Environment
           script: |
-            echo $CM_BRANCH
-            echo $CM_TAG
-            echo $CM_REPO_SLUG
+            if [[ $CM_BRANCH == "release/A" ]]; then
+              echo "test-a"
+            elif [[ $CM_BRANCH == "release/B" ]]; then
+              echo "test-b"
+            elif [[ $CM_BRANCH == "main" ]]; then
+              echo "mainだよー"
+            fi
     # artifacts:
     #   - SDK_flies.zip
     publishing:
