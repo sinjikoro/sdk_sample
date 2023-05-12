@@ -38,13 +38,11 @@ workflows:
         #     mv build/host/outputs/repo $PUBLIC_ENV_VAR
         #     mv build/ios/framework $PUBLIC_ENV_VAR
         #     zip -r SDK_flies.zip $PUBLIC_ENV_VAR
-        - name: github
+        - name: env
           script: |
-            mkdir driver
-            cd driver
-            git clone --depth 1 --no-single-branch https://sinjikoro:${GITHUB_TOKEN}@github.com/sinjikoro/driver_sample.git
-            git checkout main
-            ls -la
+            echo $CM_BRANCH
+            echo $CM_TAG
+            echo $CM_REPO_SLUG
     # artifacts:
     #   - SDK_flies.zip
     publishing:
