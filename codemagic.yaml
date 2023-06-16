@@ -10,7 +10,6 @@ workflows:
         - my-group
       vars:
         PUBLIC_ENV_VAR: $CM_BUILD_DIR/artifacts
-        SUFFIX: $(echo $CM_BRANCH | sed 's/.*\///')
       flutter: stable
       xcode: latest
     cache:
@@ -48,9 +47,8 @@ workflows:
             elif [[ $CM_BRANCH == "main" ]]; then
               echo "mainだよー"
             fi
+            export SUFFIX=$(echo $CM_BRANCH | sed 's/.*\///')
             echo 1.0.0-$SUFFIX
-        - name: Get Variable
-          script: |
             echo $SUFFIX
             echo $CM_REPO_SLUG
             echo $GITHUB_TOKEN
