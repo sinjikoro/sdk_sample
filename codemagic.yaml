@@ -47,6 +47,7 @@ workflows:
             elif [[ $CM_BRANCH == "main" ]]; then
               echo "mainだよー"
             fi
+            echo $CM_BRANCH | sed 's/.*\///'
     # artifacts:
     #   - SDK_flies.zip
     publishing:
