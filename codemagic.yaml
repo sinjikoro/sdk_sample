@@ -36,3 +36,6 @@ workflows:
             echo $TEMPLATE
             echo "$TEMPLATE"
             echo "${TEMPLATE}"
+            echo $TEMPLATE | \
+              sed -e "s/\${A}/$A/" \
+                  -e "s/\${B}/$B/"
