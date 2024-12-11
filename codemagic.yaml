@@ -1,6 +1,6 @@
 workflows:
-  my-workflow:
-    name: sdk build
+  main-workflow:
+    name: test workflow
     labels:
       - test
     instance_type: mac_mini_m1
@@ -11,7 +11,6 @@ workflows:
       vars:
         PUBLIC_ENV_VAR: $CM_BUILD_DIR/artifacts
       flutter: stable
-      xcode: latest
     cache:
       cache_paths:
         - ~/.pub-cache
@@ -28,25 +27,8 @@ workflows:
           include: true
       cancel_previous_builds: false
     scripts:
-        - name: env
+        - name: env check
           script: |
             echo $CM_BRANCH
             echo $CM_TAG
             echo $CM_REPO_SLUG
-    publishing:
-      email:
-        recipients:
-            - shinnaga.dev@gmail.com
-      scripts:
-        - name: publish github releases
-          script: |
-            if [ -z ${CM_TAG} ]; then
-              echo "Not a tag build, will not publish GitHub release"
-              exit 0
-            fi
-
-            gh auth login
-            gh release create "${CM_TAG}" \
-              --title "sampleSDK ${CM_TAG}" \
-              --notes "でっかい変更だよ！" \
-              SDK_flies.zip
