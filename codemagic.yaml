@@ -29,6 +29,10 @@ workflows:
     scripts:
         - name: env check
           script: |
-            echo $CM_BRANCH
-            echo $CM_TAG
-            echo $CM_REPO_SLUG
+            export A=aaa
+            B=bbb
+            echo $A
+            echo $B
+            echo $TEMPLATE
+            echo "$TEMPLATE"
+            echo "${TEMPLATE}"
